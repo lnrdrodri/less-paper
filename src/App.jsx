@@ -3,12 +3,17 @@ import Layout from './layouts';
 import { Heading } from '@radix-ui/themes';
 import PagePartners from './pages/Partners';
 import PagePartnersShow from './pages/Partners/show';
+import LoginLayout from './layouts/login';
+import LoginPage from './pages/Login';
 
 
 export function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<LoginLayout/>}>
+          <Route path='/login' element={<LoginPage />} />
+        </Route>
         <Route element={<Layout/>}>
           <Route path='/' element={<Heading size={6}>Dashboard</Heading>} />
           <Route path='/partners'>

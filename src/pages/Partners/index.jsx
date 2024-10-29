@@ -1,8 +1,14 @@
 import { MagnifyingGlassIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Box, Button, Dialog, Flex, Heading, Table, TextField } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
+import FormInput from "../../components/Form/Input";
+
+import { useForm } from "react-hook-form";
+import FormSelect from "../../components/Form/Select";
 
 const PagePartners = () => {
+  const { register, handleSubmit } = useForm();
+
   const partners = [
     {
       id: 1,
@@ -33,6 +39,10 @@ const PagePartners = () => {
     },
   ];
 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Box>
       <Flex justify="between">
@@ -46,50 +56,69 @@ const PagePartners = () => {
 
           <Dialog.Content maxWidth="800px">
             <Dialog.Title>Add Partner</Dialog.Title>
-            {/* <Dialog.Description size="2" mb="4">
-              Make changes to your profile.
-            </Dialog.Description> */}
-            {/* <Button variant="solid" radius="large">
-              <PlusIcon /> Partner
-            </Button>
-            <Button variant="soft" radius="large">
-              <PlusIcon /> Partner
-            </Button>
-            <Button variant="surface" radius="large">
-              <PlusIcon /> Partner
-            </Button>
-            <Button variant="outline" radius="large">
-              <PlusIcon /> Partner
-            </Button> */}
-            <Flex direction="column" gap="2">
-              <Flex gap="2">
-                <Box flexGrow="1">
-                  <TextField.Root radius="large" placeholder="Razão Social"/>
-                </Box>
-                <Box flexGrow="1">
-                  <TextField.Root radius="large" placeholder="CNPJ"/>
-                </Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Flex direction="column" gap="2">
+                <Flex gap="2">
+                  <Box flexGrow="1">
+                    <FormInput
+                      label="Razão Social"
+                      register={register}
+                      register_name="name"
+                      required 
+                    />
+                  </Box>
+                  <Box flexGrow="1">
+                    <FormInput
+                      label="CNPJ"
+                      register={register}
+                      register_name="cnpj"
+                      required 
+                    />
+                  </Box>
+                </Flex>
+                <FormInput
+                  label="Rua"
+                />
+                <FormInput
+                  label="Bairro"
+                />
+                <FormInput
+                  label="Cidade"
+                />
+                <FormInput
+                  label="CEP"
+                />
+                <FormInput
+                  label="UF"
+                />
+                {/* AUTOCOMPLETE */}
+                <TextField.Root radius="large" placeholder="Parceiro" />
+                {/* SELECT */}
+                <TextField.Root radius="large" placeholder="Regime Tributação"/>
+                <FormSelect
+                  label="Regime Tributação"
+                  radius="large"
+                  register={register}
+                  register_name="regime"
+                  required
+                  items={[
+                    { value: "1", text: "Simples Nacional" },
+                    { value: "2", text: "Lucro Real" },
+                    { value: "3", text: "Lucro Presumido" },
+                  ]}
+                />
+                {/* CURRENCY */}
+                <TextField.Root radius="large" placeholder="Faturamento"/>
               </Flex>
-              <TextField.Root radius="large" placeholder="Rua"/>
-              <TextField.Root radius="large" placeholder="Bairro"/>
-              <TextField.Root radius="large" placeholder="Cidade"/>
-              <TextField.Root radius="large" placeholder="CEP"/>
-              <TextField.Root radius="large" placeholder="UF"/>
-              {/* One Partner can be linked to one Partipant */}
-              <TextField.Root radius="large" placeholder="Parceiro"/>
-              <TextField.Root radius="large" placeholder="Regime Tributação"/>
-              <TextField.Root radius="large" placeholder="Faturamento"/>
-            </Flex>
-            <Flex gap="3" mt="4" justify="end">
-              <Dialog.Close>
-                <Button variant="soft" color="gray">
-                  Cancel
-                </Button>
-              </Dialog.Close>
-              <Dialog.Close>
-                <Button>Save</Button>
-              </Dialog.Close>
-            </Flex>
+              <Flex gap="3" mt="4" justify="end">
+                <Dialog.Close>
+                  <Button variant="soft" color="gray">
+                    Cancel
+                  </Button>
+                </Dialog.Close>
+                <Button type="submit">Save</Button>
+              </Flex>
+            </form>
           </Dialog.Content>
         </Dialog.Root>
       </Flex>
