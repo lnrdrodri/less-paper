@@ -10,7 +10,9 @@ const LoginPage = () => {
     <Flex align="start" justify="center" pt="15%" width="100%" height="100%">
       <Box minHeight="40vh" className="md:w-1/2 lg:w-1/4 2xl:w-1/5 border border-zinc-700 rounded-md">
         <Flex direction="column" align="stretch" px="6" py="8">
-          <CrumpledPaperIcon width={48} height={48} className="mb-4 mx-auto"/>
+          <div className="flex items-center gap-2 mb-4 mx-auto">
+            <CrumpledPaperIcon width={48} height={48}/>
+          </div>
           <form onSubmit={onSubmitLogin} className="flex flex-col items-stretch gap-3">
             <FormInput
               label="E-mail"

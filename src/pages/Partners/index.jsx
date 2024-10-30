@@ -5,6 +5,8 @@ import FormInput from "../../components/Form/Input";
 
 import { useForm } from "react-hook-form";
 import FormSelect from "../../components/Form/Select";
+import { httpClient } from "../../app/services/httpClient";
+import { useEffect } from "react";
 
 const PagePartners = () => {
   const { register, handleSubmit } = useForm();
@@ -42,6 +44,18 @@ const PagePartners = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  function getPartners() {
+    httpClient
+      .get("/users/units")
+      .then((response) => {
+        console.log(response?.data);
+      });
+  }
+
+  useEffect(() => {
+    getPartners();
+  }, []);
 
   return (
     <Box>

@@ -1,14 +1,10 @@
-import { BackpackIcon, PersonIcon, ReaderIcon, CrumpledPaperIcon, AvatarIcon } from '@radix-ui/react-icons';
+import { BackpackIcon, PersonIcon, ReaderIcon, CrumpledPaperIcon, AvatarIcon, ExitIcon } from '@radix-ui/react-icons';
 import { Box, Flex, Heading, Separator, Tooltip } from '@radix-ui/themes';
 import { Link, Outlet } from 'react-router-dom';
+import { useAuth } from '../app/hooks/useAuth';
 
 const Layout = () => {
-  function getAnything() {
-    fetch('http://localhost:8282/v1/users/units')
-    .then(res => {
-      console.log(res);
-    })
-  }
+  const { logout } = useAuth();
   
   return (
     <div className='w-screen h-screen'>
@@ -42,6 +38,9 @@ const Layout = () => {
               <Link className='mb-5' to="/projects">
                 <ReaderIcon width={24} height={24} />
               </Link>
+            </Tooltip>
+            <Tooltip content="Logout" side='right'>
+              <ExitIcon width={24} height={24} onClick={logout} />
             </Tooltip>
           </Flex>
         </Box>
