@@ -12,11 +12,12 @@ const FormInput = forwardRef(({
   name,
   onChange,
   onBlur,
-  error
-}, ref) => {
+  error,
+  required = false,
+}, ref) => {  
   return (
     <Flex direction="column" gap="1" position="relative">
-      <Text as="label" size="2" weight="medium">{label}&nbsp;</Text>
+      <Text as="label" size="2" weight="medium" ml="1">{label}&nbsp;</Text>
       <TextField.Root
         size={size}
         radius={radius}
@@ -34,7 +35,7 @@ const FormInput = forwardRef(({
           {icon_right}
         </TextField.Slot>
       </TextField.Root>
-      {name && (
+      {required && (
         <span
           title="Required"
           style={{

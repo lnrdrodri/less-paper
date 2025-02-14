@@ -1,5 +1,6 @@
 import axios from "axios";
 import { localstorageKeys } from "../config/localstorageKeys";
+import toast from "react-hot-toast";
 
 export const httpClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -17,7 +18,10 @@ httpClient.interceptors.request.use(config => {
 
 httpClient.interceptors.response.use((response) => response, (error) => {
   if (error.response.status === 401) {
+    toast.error('Session expired, please login again');
     localStorage.removeItem(localstorageKeys.TOKEN);
-    window.location = '/login';
+    setTimeout(() => {
+      window.location = '/login';
+    }, 2000);
   }
 });

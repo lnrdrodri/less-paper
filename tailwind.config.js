@@ -20,6 +20,7 @@ module.exports = {
       yellow: colors.yellow,
       slate: colors.slate,
       zinc: colors.zinc,
+      olive: colors.olive,
     },
     fontFamily: {
       sans: ['sans-serif'],

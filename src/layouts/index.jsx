@@ -9,20 +9,20 @@ const Layout = () => {
   return (
     <div className='w-screen h-screen'>
       <Flex height="100%">
-        <Box width="auto" py="4" className='border-r-[1px] border-r-zinc-700'>
+        <Box width="auto" py="4" className='border-r-[1px] border-r-zinc-700 !flex flex-col items-center justify-between'>
           <Flex direction="column" align="center">
             <Link to="/">
               <CrumpledPaperIcon width={36} height={36} className='' />
             </Link>
             <Separator mt="3" size="3" mb="6" />
 
-            <Tooltip content="Partner" side='right'>
-              <Link className='mb-5' to="/partners">
+            <Tooltip content="Unidades" side='right'>
+              <Link className='mb-5' to="/units">
                 <AvatarIcon width={24} height={24} />
               </Link>
             </Tooltip>
 
-            <Tooltip content="Participants" side='right'>
+            <Tooltip content="Participantes" side='right'>
               <Link className='mb-5' to="/participants">
                 <PersonIcon width={24} height={24} />
               </Link>
@@ -39,10 +39,12 @@ const Layout = () => {
                 <ReaderIcon width={24} height={24} />
               </Link>
             </Tooltip>
-            <Tooltip content="Logout" side='right'>
-              <ExitIcon width={24} height={24} onClick={logout} />
-            </Tooltip>
           </Flex>
+          <Box>
+            <Tooltip content="Logout" side='right'>
+              <ExitIcon width={24} height={24} color='var(--red-9)' onClick={logout} className='cursor-pointer' />
+            </Tooltip>
+          </Box>
         </Box>
         <Box flexGrow="1" p="4">
           <Outlet/>
